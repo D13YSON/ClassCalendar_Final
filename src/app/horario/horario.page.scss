@@ -1,0 +1,46 @@
+.itemEstilo{
+    --ion-item-background: rgb(192, 192, 192);
+    background-color:rgb(192, 192, 192);     
+    text-align: right;
+    border-radius: 10px;
+    border-top: 10px;
+    margin: 3% 0 0 1%;
+    min-width: 256px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);      
+  }
+  .alinhamento{
+    display:grid;
+    justify-items: center;
+  }
+  #texto{
+     text-align: left;
+  }
+  #icone{
+     font-size: 40px;
+  }
+  .btn{
+     margin: 10px auto;
+     font-size: 15px;
+     text-align: center;
+     display:grid;
+     width: 60%;
+ }
+
+ @media screen and (min-width:750px) and (max-width:1280px){
+     .itemEstilo{
+          width: 65%; 
+     }
+     .btn{
+          width: 50%;
+     }
+     #texto{
+          text-align: center;
+          font-size: larger;
+     }
+     #icone{
+          font-size: 60px;
+          margin: 0px 0px 10px 30px;
+     }
+
+ }
+
