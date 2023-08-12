@@ -67,6 +67,16 @@ ion-content.conteudo {
   height: 200px;
 }
 
+.estilo1{
+     font-family: "Lucida Console", "Courier New", monospace;color:#000000;
+     justify-items: center;
+     margin: auto;
+}
+
+#btn{
+     margin:auto auto auto 20px;
+}
+
 .quadrado-grid {
   justify-content: center;
   align-items: center;
@@ -76,56 +86,28 @@ ion-content.conteudo {
   padding: 15px;
  
   ion-col {
-    background-color: rgb(192, 192, 192);
-    border-radius: 20px;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-    font-size: 0.9em;
-    font-weight: 500;
-    transition: all 0.3s ease-in-out;
-    min-width: 250px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6); 
-
-
     &:hover {
       transform: scale(1.1);
-    }
+    }  
 
-    p{
-      font-family: "Lucida Console", "Courier New", monospace;
-      color:#000000
-    }
-
-   div{
-    
-    align-items: center;
-    text-align: center;
-   
-    padding: 8px;
+   .estilo{
+     display: grid;
+     --ion-item-background: rgb(192, 192, 192);
+     background-color: rgb(192, 192, 192);
+     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+     height: 65%;
+     border-radius: 40px;
    }
-    .div2{
-    
-    padding-bottom: 10px;
-    
-    
-    }
+
     .options {
-      
       position: absolute;
       top: 0;
       left: 100%;
       margin-left: 10px;
-      
       padding: 5px;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-    
-    
   }
 }
 
