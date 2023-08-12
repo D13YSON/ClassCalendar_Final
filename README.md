@@ -14,3 +14,6 @@ Link dos repositorios originais:
 2- BACK-END: https://github.com/nickoolaz/Trabalho-Esw;
 
 3- FRONT-END: https://github.com/DanielSouzaCruz/Front-End-Monitoria;
+
+
+Cpf e senha do user técnico: 1234
