@@ -1,152 +1,158 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="header">
-    <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
-      <ion-menu-button  menu="main-menu"></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center">ClassCalendar</ion-title>
-  <ion-button slot="end" shape="round" size="small" (click)="getAlldados()" *ngIf="userType == 'professor' || userType=='aluno'">
-    <ion-icon name="refresh-outline"></ion-icon>
-  </ion-button>
-  </ion-toolbar>
+     <ion-toolbar class="header">
+          <ion-buttons slot="start" *ngIf="userType == 'tecnico'">
+               <ion-menu-button menu="main-menu"></ion-menu-button>
+          </ion-buttons>
+          <ion-title class="ion-text-center">ClassCalendar</ion-title>
+          <ion-button slot="end" shape="round" size="small" (click)="getAlldados()"
+               *ngIf="userType == 'professor' || userType=='aluno'">
+               <ion-icon name="refresh-outline"></ion-icon>
+          </ion-button>
+     </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <ion-grid *ngIf="userType == 'aluno'">
-    <ng-container *ngIf="usuario"> 
-      <ng-container *ngIf="items.length===0 || (todosMonitoriasIndisponiveis(items)&& items.length>0) || !verificarIdAluno(items,usuario)"> 
-        <ion-row style="font-family: 'Courier New', Courier, monospace;">
-          <h2>Bem vindo, {{usuario.nome}}.</h2>
-          <h2>Você não possui agendamentos ativos.</h2>
-        </ion-row>
-      </ng-container> 
-    </ng-container>
-    
-<ng-container *ngIf="usuario">
-     <ion-row class="quadrado-grid">
-          <ng-container *ngFor="let monitoria of items; let ix=index">
-               <ion-col size="12" *ngIf="usuario.idAluno===monitoria.aluno.idAluno&& monitoria.estado===true">
-                    <ion-list class="estilo">
-                         <ion-item id="centro" lines="none">
-                              dia:{{monitoria.horario.dia}}
-                              <br>
-                              <br>
-                              professor:{{monitoria.horario.disciplina.professor.nome}}
-                         </ion-item>
-                              <br>
-                         <ion-item id="centro" lines="none">
-                              <ion-buttons>
-                                   <ion-button class="ion-justify-content-center" fill="solid" expand="block"
-                                        color="primary" shape="round">
-                                        {{formatarHorario(monitoria.horario.horarioInicio)}} </ion-button>
-                              </ion-buttons>
-                         </ion-item>
-                         <ion-item  lines="none" id="centro">materia:{{monitoria.horario.disciplina.materia}}</ion-item>
+<ion-content>
+     <ion-grid *ngIf="userType == 'aluno'">
+          <ng-container *ngIf="usuario">
+               <ng-container
+                    *ngIf="items.length===0 || (todosMonitoriasIndisponiveis(items)&& items.length>0) || !verificarIdAluno(items,usuario)">
+                    <ion-row style="font-family: 'Courier New', Courier, monospace;">
+                         <h2>Bem vindo, {{usuario.nome}}.</h2>
+                         <h2>Você não possui agendamentos ativos.</h2>
+                    </ion-row>
+               </ng-container>
+          </ng-container>
 
-                    </ion-list>
+          <ng-container *ngIf="usuario">
+               <ion-row class="quadrado-grid">
+                    <ng-container *ngFor="let monitoria of items; let ix=index">
+                         <ion-col size="12" *ngIf="usuario.idAluno===monitoria.aluno.idAluno&& monitoria.estado===true">
+                              <ion-list class="estilo">
+                                   <ion-item id="centro" lines="none">
+                                        Professor:{{monitoria.horario.disciplina.professor.nome}}
+                                        <br>
+                                        <br>
+                                        Materia:{{monitoria.horario.disciplina.materia}}
+                                        Dia:{{monitoria.horario.dia}}
+                                   </ion-item>
+                                
+                                   <ion-item id="centro" lines="none">
+                                        <ion-buttons>
+                                             <ion-button class="ion-justify-content-center" fill="solid" expand="block"
+                                                  color="primary" shape="round">
+                                                  {{formatarHorario(monitoria.horario.horarioInicio)}} </ion-button>
+                                        </ion-buttons>
+                                   </ion-item>
+                              </ion-list>
+                         </ion-col>
+                    </ng-container>
+               </ion-row>
+          </ng-container>
+     </ion-grid>
+
+     <ion-grid *ngIf="userType == 'professor'">
+          <ng-container *ngIf="usuario">
+               <ng-container
+                    *ngIf="items.length === 0 || (todosMonitoriasIndisponiveis(items) && items.length > 0)|| !verificarIdProfessor(items, usuario)">
+                    <h1 style="font-family: 'Courier New', Courier, monospace;">Você não tem nenhum agendamento ativo no
+                         sistema.</h1>
+               </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="usuario">
+               <ion-row class="quadrado-grid">
+                    <ng-container *ngFor="let monitoria of items; let ix = index">
+                         <ion-col size="12"
+                              *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
+                              <ion-list class="estilo">
+
+                                   <ion-item lines="none" id="centro">
+                                        Dia: {{ monitoria.horario.dia }}
+                                        <br>
+                                        Aluno: {{ monitoria.aluno.nome }}
+                                   </ion-item>
+                                   <br>
+                                   <ion-item lines="none" id="centro">
+                                        <ion-buttons class="horario2">
+                                             <ion-button fill="solid" expand="block" color="primary" shape="round">{{
+                                                  formatarHorario(monitoria.horario.horarioInicio) }}
+                                             </ion-button>
+                                        </ion-buttons>
+                                   </ion-item>
+
+                                   <ion-item lines="none" id="centro"><br>
+                                        Matéria: {{ monitoria.horario.disciplina.materia}}
+                                   </ion-item>
+
+                                   <ion-item lines="none" id="centro">
+                                        <ion-button id="btn" expand="block" (click)="atualizar(monitoria)" shape="round"
+                                             color="success">Finalizar</ion-button>
+                                        <ion-button id="btn" expand="block" (click)="openPopup(monitoria)" shape="round"
+                                             color="primary">Feedback</ion-button>
+                                   </ion-item>
+
+                              </ion-list>
+                         </ion-col>
+                    </ng-container>
+               </ion-row>
+          </ng-container>
+     </ion-grid>
+
+     <ion-grid *ngIf="userType == 'tecnico'">
+          <ion-row>
+               <ion-col class="ion-text-center">
+                    <h1 style="font-family: 'Courier New', Courier, monospace;">Bem vindo, {{usuario.nome}}</h1>
                </ion-col>
-          </ng-container>
-     </ion-row>
-</ng-container>
-  </ion-grid>
-
-  <ion-grid *ngIf="userType == 'professor'">
-    <ng-container *ngIf="usuario" >
-      <ng-container *ngIf="items.length === 0 || (todosMonitoriasIndisponiveis(items) && items.length > 0)|| !verificarIdProfessor(items, usuario)">
-        <h1 style="font-family: 'Courier New', Courier, monospace;">Você não tem nenhum agendamento ativo no sistema.</h1>
-      </ng-container>
-    </ng-container>  
-
-      <ng-container *ngIf="usuario">
-        <ion-row class="quadrado-grid">
-          <ng-container *ngFor="let monitoria of items; let ix = index">
-            <ion-col size="12" *ngIf="usuario.idProfessor === monitoria.horario.disciplina.professor.idProfessor && monitoria.estado === true">
-              <ion-list class="estilo">
-
-               <ion-item lines="none" id="centro">
-                    Dia: {{ monitoria.horario.dia }}
-                    <br>
-                    Aluno: {{ monitoria.aluno.nome }}
-               </ion-item>
-                    <br>
-               <ion-item lines="none" id="centro">
-                    <ion-buttons class="horario2">
-                         <ion-button fill="solid" expand="block" color="primary" shape="round">{{
-                              formatarHorario(monitoria.horario.horarioInicio) }}
-                         </ion-button>
-                    </ion-buttons>
-               </ion-item>
-
-               <ion-item lines="none" id="centro"><br>
-                    Matéria: {{ monitoria.horario.disciplina.materia}}
-               </ion-item>
-                    
-               <ion-item lines="none" id="centro">
-                    <ion-button id="btn" expand="block" (click)="atualizar(monitoria)" shape="round" color="success">Finalizar</ion-button>
-                <ion-button id="btn" expand="block" (click)="openPopup(monitoria)" shape="round" color="primary">Feedback</ion-button>        
-               </ion-item> 
-
-          </ion-list>      
-            </ion-col>
-          </ng-container>
-        </ion-row>
-      </ng-container>            
-  </ion-grid>
-
-  <ion-grid *ngIf="userType == 'tecnico'">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <h1 style="font-family: 'Courier New', Courier, monospace;">Bem vindo, {{usuario.nome}}</h1>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          </ion-row>
+     </ion-grid>
 </ion-content>
 
 <ion-footer [translucent]="true" *ngIf="userType == 'aluno' ">
-  <ion-toolbar class="navebar">
-    <ion-row>
+     <ion-toolbar class="navebar">
+          <ion-row>
 
-      <ion-col size="4" class="icones">
-        <ion-icon (click)="goAgendamento()" name="calendar" size="large"></ion-icon>
-      </ion-col>
+               <ion-col size="4" class="icones">
+                    <ion-icon (click)="goAgendamento()" name="calendar" size="large"></ion-icon>
+               </ion-col>
 
-      <ion-col size="4" class="icones" (click)="goPerfil()">
-        <ion-icon name="person" size="large"></ion-icon>
-      </ion-col>
+               <ion-col size="4" class="icones" (click)="goPerfil()">
+                    <ion-icon name="person" size="large"></ion-icon>
+               </ion-col>
 
-      <ion-col size="4" class="icones" (click)="goExit()">
-        <ion-icon name="enter-outline" size="large"></ion-icon>
-      </ion-col>
+               <ion-col size="4" class="icones" (click)="goExit()">
+                    <ion-icon name="enter-outline" size="large"></ion-icon>
+               </ion-col>
 
-    </ion-row>
-  </ion-toolbar>
+          </ion-row>
+     </ion-toolbar>
 </ion-footer>
 
 <ion-footer [translucent]="true" *ngIf="userType == 'professor' ">
-  <ion-toolbar class="navebar">
-    <ion-row>
-      <ion-col size="6" class="icones" (click)="goPerfil()">
-        <ion-icon name="person" size="large"></ion-icon>
-      </ion-col>
+     <ion-toolbar class="navebar">
+          <ion-row>
+               <ion-col size="6" class="icones" (click)="goPerfil()">
+                    <ion-icon name="person" size="large"></ion-icon>
+               </ion-col>
 
-      <ion-col size="6" class="icones" (click)="goExit()">
-        <ion-icon name="enter-outline" size="large"></ion-icon>
-      </ion-col>
+               <ion-col size="6" class="icones" (click)="goExit()">
+                    <ion-icon name="enter-outline" size="large"></ion-icon>
+               </ion-col>
 
-    </ion-row>
-  </ion-toolbar>
+          </ion-row>
+     </ion-toolbar>
 </ion-footer>
 
 <ion-footer [translucent]="true" *ngIf="userType == 'tecnico' ">
-  <ion-toolbar class="navebar">
-    <ion-row>
-      <ion-col size="6" class="icones" (click)="goHome()">
-        <ion-icon name="home" size="large"></ion-icon>
-      </ion-col>
+     <ion-toolbar class="navebar">
+          <ion-row>
+               <ion-col size="6" class="icones" (click)="goHome()">
+                    <ion-icon name="home" size="large"></ion-icon>
+               </ion-col>
 
-      <ion-col size="6" class="icones" (click)="goPerfil()">
-        <ion-icon name="person-circle-outline" size="large"></ion-icon>
-      </ion-col>
+               <ion-col size="6" class="icones" (click)="goPerfil()">
+                    <ion-icon name="person-circle-outline" size="large"></ion-icon>
+               </ion-col>
 
-    </ion-row>
-  </ion-toolbar>
+          </ion-row>
+     </ion-toolbar>
 </ion-footer>
