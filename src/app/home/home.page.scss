@@ -178,8 +178,9 @@ ion-toolbar {
    border-radius: 40px;
 }
 #centro{
-     margin:  auto;
+     margin: 10px auto auto ;
      text-align: center;
+     font-family: "Lucida Console", "Courier New", monospace;color:#000000;
 }
 #btn{
      margin: 5px;
@@ -195,6 +196,11 @@ ion-toolbar {
      }
      #btn{
           font-size: larger;
+     }
+ }
+ @media screen and (min-width:260px)and (max-width:600px){
+     .estilo{
+          height:150px;
      }
  }
  
