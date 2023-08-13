@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+     <ion-toolbar class="header">
+          <ion-title class="titulo">
+               Alunos
+          </ion-title>
+          <ion-buttons>
+               <ion-menu-button slot="start"></ion-menu-button>
+          </ion-buttons>
+          <ion-button size="small" slot="end" shape="round" (click)="getAllDados()">
+               <ion-icon name="refresh-outline"></ion-icon>
+          </ion-button>
+     </ion-toolbar>
+</ion-header>
+
+<!-- conteudo do centro -->
+<ion-content class="conteudo">
+     <ion-row>
+          <ion-col></ion-col>
+          <ion-col size="12" class="agendamento">
+               Selecione o alunos desejados:
+          </ion-col>
+     </ion-row>
+
+     <ion-grid>
+          <ion-row class="quadrado-grid">
+               <ion-col *ngFor="let aluno of itens; let ix = index">
+                    <ion-grid>
+                         <ion-buttons>
+                              <ion-button class="estilo" fill="solid" color="primary"
+                                   (click)="irAlunoDetalhe(aluno)"><ion-icon
+                                        name="archive-outline"></ion-icon></ion-button>
+                              <ion-button  class="estilo" fill="solid" color="danger"
+                                   (click)="excluirAluno(aluno)"><ion-icon
+                                        name="alert-circle-outline"></ion-icon></ion-button>
+                         </ion-buttons>
+                    </ion-grid>    
+                    <ion-item lines="none" class="itemEstilo">
+                         <ion-icon name="person-circle-outline" class="icone-perf"></ion-icon>
+                         <p title="{{aluno.nome}}">{{aluno.nome}}</p>                       
+                    </ion-item>
+               </ion-col>
+          </ion-row>
+     </ion-grid>
+</ion-content>
+
+<!-- botoes de baixo -->
+<ion-footer [translucent]="true">
+     <ion-toolbar class="navebar">
+          <ion-row>
+               <ion-col size="6" class="icones" (click)="goHome()">
+                    <ion-icon name="home" size="large"></ion-icon>
+               </ion-col>
+
+               <ion-col size="6" class="icones" (click)="goPerfil()">
+                    <ion-icon name="person-circle-outline" size="large"></ion-icon>
+               </ion-col>
+
+          </ion-row>
+     </ion-toolbar>
+</ion-footer>
