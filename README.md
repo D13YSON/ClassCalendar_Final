@@ -6,7 +6,7 @@ Tem como objetivo realizar nosso primeiro projeto totalmento completo com Back-E
 
 Tecnologias usadas: Java-Spring-Boot (JDK-17), PostgreSql 14/pgAdmin 4 e Ionic(Angular e TypeScript);
 
-Documentação com diagramas ,documento de requisitos e realtorios!:  ClassCalendar.doc.final.pdf 
+Documentação com diagramas ,documento de requisitos e realtorios! https://drive.google.com/file/d/1Bc9f0ZXX7mGLXq827v759zs4sEwvcZcw/view?usp=sharing 
 
 Link dos repositorios originais:
 
